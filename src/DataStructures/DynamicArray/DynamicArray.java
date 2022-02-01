@@ -115,8 +115,9 @@ public class DynamicArray<T> implements Iterable<T>{
             }
             @Override
             public T next(){
+                T data=arr[index];
                 index++;
-                return arr[index];
+                return data;
             }
             @Override
             public void remove(){
