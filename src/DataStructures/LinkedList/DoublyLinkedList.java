@@ -1,6 +1,8 @@
 package DataStructures.LinkedList;
 
-public class DoublyLinkedList<T> {
+import java.util.Iterator;
+
+public class DoublyLinkedList<T> implements Iterable<T>{
     //creating node prototype.
     private class Node<T>{
         T data;
@@ -120,5 +122,113 @@ public class DoublyLinkedList<T> {
         }
         return data;
     }
-    //will add remove at and remove obj soon...
+    private T removeNode(Node<T> node){
+        T data=node.data;
+        if(node.previous==null){
+            removeFirst();
+            return data;
+        }
+        if(node.next==null){
+            removeLast();
+            return data;
+        }
+        //reattaching pointers
+        node.previous.next=node.next;
+        node.next.previous=node.previous;
+        node.next=null;
+        node.previous=null;
+        node.data=null;
+        node=null;
+        size--;
+        return data;
+    }
+    public T removeAt(int index){
+        if(index<0|| index>=size){
+            throw new IllegalArgumentException();
+        }
+        Node<T> traverse=head;
+        if(index<size/2){
+            for(int i=0;i!=index;i++){
+                traverse=traverse.next;
+            }
+        }else{
+            traverse=tail;
+            for(int i=size-1;i!=index;i--){
+                traverse=traverse.previous;
+            }
+        }
+        return removeNode(traverse);
+    }
+    public int indexOf(Object obj){
+        int index=0;
+        Node<T> trav=head;
+        if(obj==null){
+            for(trav=head;trav!=null;trav=trav.next,index++){
+                if(trav.data==null){
+                    return index;
+                }
+            }
+        }else{
+            for(trav=head;trav!=null;trav=trav.next,index++){
+                if(obj.equals(trav.data)){
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+    public boolean remove(Object obj){
+       Node<T> trav;
+       if(obj==null){
+           for(trav=head;trav!=null;trav=trav.next){
+               if(trav.data==null){
+                   removeNode(trav);
+                   return true;
+               }
+           }
+       }else{
+           for(trav=head;trav!=null;trav=trav.next){
+               if(trav.data.equals(obj)){
+                   removeNode(trav);
+                   return true;
+               }
+           }
+       }
+       return false;
+    }
+    public boolean contains(Object obj){
+        return indexOf(obj)!=-1;
+    }
+    @Override
+    public Iterator<T> iterator(){
+        return new Iterator<T>(){
+            private Node<T> trav=head;
+
+            @Override
+            public boolean hasNext(){
+                return trav!=null;
+            }
+            @Override
+            public T next(){
+                T data=trav.data;
+                trav=trav.next;
+                return data;
+            }
+        };
+    }
+    @Override
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("[");
+        Node<T> trav=head;
+        while(trav!=null){
+            sb.append(trav.data);
+            if(trav.next!=null){
+                sb.append(",");
+            }
+            trav=trav.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
