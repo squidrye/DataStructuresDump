@@ -1,7 +1,15 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import DataStructures.DynamicArray.DynamicArray;
 import DataStructures.LinkedList.DoublyLinkedList;
+import DataStructures.Stack.LinkedStack;
+
+
 public class Test {
-    public static void main(String[] args){
+    public static void main(String[] args)throws IOException{
+      BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
         DynamicArray<Integer> a=new DynamicArray<Integer>(2);
       a.add(12);
         a.add(14);
@@ -14,8 +22,16 @@ public class Test {
         list.add(14);
         list.add(15);
         list.add(16);
-        System.out.println(list);
+        // System.out.println(list);
         list.remove(12);
-        System.out.println(list);
+        // System.out.println(list);
+
+        LinkedStack<Integer> stack=new LinkedStack<Integer>();
+        for(int i=0;i<5;i++){
+          stack.push(Integer.parseInt(br.readLine()));
+        }
+        stack.pop();
+        System.out.println(stack);
+        System.out.println(stack.peek());
     }
 }
