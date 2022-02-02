@@ -4,11 +4,11 @@ import java.util.Iterator;
 
 public class DoublyLinkedList<T> implements Iterable<T>{
     //creating node prototype.
-    private class Node<T>{
-        T data;
-        Node<T> next,previous;
+    private class Node<E>{
+        E data;
+        Node<E> next,previous;
         
-        public Node(T data, Node<T>next, Node<T> previous){
+        public Node(E data, Node<E>next, Node<E> previous){
             this.data=data;
             this.next=next;
             this.previous=previous;
@@ -44,6 +44,7 @@ public class DoublyLinkedList<T> implements Iterable<T>{
             head.previous=new Node<T>(dataElem, head, null);
             head=head.previous;
         }
+        size++;
     }
     public void add(T dataElem){
         addLast(dataElem);
