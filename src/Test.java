@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import DataStructures.DynamicArray.DynamicArray;
 import DataStructures.LinkedList.DoublyLinkedList;
 import DataStructures.Stack.LinkedStack;
-
+import DataStructures.Queue.ArrayQueue;
 
 public class Test {
     public static void main(String[] args)throws IOException{
@@ -26,12 +26,18 @@ public class Test {
         list.remove(12);
         // System.out.println(list);
 
-        LinkedStack<Integer> stack=new LinkedStack<Integer>();
-        for(int i=0;i<5;i++){
-          stack.push(Integer.parseInt(br.readLine()));
-        }
-        stack.pop();
-        System.out.println(stack);
-        System.out.println(stack.peek());
+        // LinkedStack<Integer> stack=new LinkedStack<Integer>();
+        // for(int i=0;i<5;i++){
+        //   stack.push(Integer.parseInt(br.readLine()));
+        // }
+        // stack.pop();
+        // System.out.println(stack);
+        // System.out.println(stack.peek());
+
+        ArrayQueue<Integer> aq=new ArrayQueue<Integer>(4);
+        aq.offer(12);
+        aq.poll();
+        System.out.println(aq);
+        System.out.println(aq.isPresent(20));
     }
 }

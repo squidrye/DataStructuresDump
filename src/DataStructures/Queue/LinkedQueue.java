@@ -24,7 +24,7 @@ public class LinkedQueue<E> implements Queue<E>, Iterable<E>{
             return list.removeFirst();
         }
     }
-    public E peak(){
+    public E peek(){
         if(isEmpty()){
             throw new RuntimeException("Queue is empty");
         }else{
