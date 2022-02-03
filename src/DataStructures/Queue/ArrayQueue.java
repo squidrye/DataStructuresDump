@@ -71,11 +71,19 @@ public class ArrayQueue<E> implements Queue<E>{
         if(isEmpty()){
             throw new RuntimeException("Queue is empty");
         }
-        int end=front>rear?front:rear;
-        int start=front<rear?front:rear;
-        for(int i=start;i<=end;i++){
+        if(rear>front){
+            for(int i=front;i<rear;i++){
                 if(array[i].equals(data))
                 return true;
+            }
+            }else{
+                for(int i=front;i<array.length;i++){
+                    if(array[i].equals(data))
+                    return true;
+                }
+                for(int i=0;i<=rear;i++)
+                if(array[i].equals(data))
+                    return true;
             }
         return false;
     }
@@ -86,13 +94,20 @@ public class ArrayQueue<E> implements Queue<E>{
             return "[]";
         }
         sb.append("[");
-        int end=front>rear?front:rear;
-        int start=front<rear?front:rear;
         // System.out.println("DEBUG: START->"+start+"END->"+end);
-        for(int i=start;i<end;i++){
+        if(rear>front){
+        for(int i=front;i<rear;i++){
             sb.append(array[i]+",");
         }
-        sb.append(array[end]+"]");
+        }else{
+            for(int i=front;i<array.length;i++){
+                sb.append(array[i]+",");
+            }
+            for(int i=0;i<rear;i++)
+            sb.append(array[i]+",");
+        }
+        
+        sb.append(array[rear]+"]");
         return sb.toString();
     }
 }
