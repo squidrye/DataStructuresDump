@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
-public class BinaryHeapPQ<E extends Comparator<E>>{
+public class BinaryHeapPQ<E extends Comparable<E>>{
 //heap will be implemented with a normal list.So,
 //A dynamic list to track the elements inside the heap
     private ArrayList<E> heap=null;
 
 //default empty heap
-    BinaryHeapPQ(){
+    public BinaryHeapPQ(){
         heap=new ArrayList<>();
     }
     //binary heap with provided size
-    BinaryHeapPQ(int size){
+    public BinaryHeapPQ(int size){
         heap=new ArrayList<>(size);
     }
     //binary heap pq using heapify on provided array of elements in On time
-    BinaryHeapPQ(E[] elements){
+    public BinaryHeapPQ(E[] elements){
 
         int heapSize=elements.length;
         heap=new ArrayList<>(heapSize);
@@ -33,7 +33,7 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
             sink(i);
         }
     }
-    BinaryHeapPQ(Collection<E> elems){
+    public BinaryHeapPQ(Collection<E> elems){
         int heapSize=elems.size();
         heap=new ArrayList<E>(heapSize);
         //adding all elements to the heap
@@ -65,6 +65,24 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
         }
         return removeAt(0);
     }
+    // returns index if heap contains elem else returns -1
+    public int contains(E elem){
+        for(int i=0;i<heap.size();i++){
+            if(heap.get(i).equals(elem))
+            return i;
+        }
+        return -1;
+    }
+    //pushing element, element must not be null
+    public void offer(E elem){
+        if(elem==null){
+            throw new IllegalArgumentException("Non null value expected");
+        }
+        heap.add(elem);
+        int indexOfLastElem=size()-1;
+        swim(indexOfLastElem);
+    }
+
     public E removeAt(int k){
         int lastIndex=size()-1;
         E tbr=heap.get(k);//element to be deleted recorded before swap
@@ -79,10 +97,10 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
     }
     //since relational operators won't be able to comapre generic E
     public boolean isLess(int index1, int index2){
-        //returns true if value at index1 is smaller than value at index2
+        //returns true if value at index1 is smaller than or equal to value at index2
         E node1=heap.get(index1);
         E node2=heap.get(index2);
-        if(node1.compare(node1,node2)<=0){
+        if(node1.compareTo(node2)<0){
             return true;
         }else return false;
     }
@@ -93,6 +111,7 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
         heap.set(i,node2);
         heap.set(j,node1);
     }
+    //bottom up node swim O{logn}
     private void swim(int curr){
         while(curr>0){
             int parent=(curr-1)/2;
@@ -103,6 +122,7 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
             parent=(curr-1)/2;
         }
     }
+    // top down node sink O(logn)
     private void sink(int curr){
         int heapSize=size();
         while(true){
@@ -122,5 +142,39 @@ public class BinaryHeapPQ<E extends Comparator<E>>{
             curr=smaller;
         }
     }
+    public boolean remove(E elem){
+        if(elem==null){
+            return false;
+        }
+        int x=contains(elem);
+        if(x!=-1){
+            removeAt(x);
+            return true;
+        }else return false;
+    }
+    //recursively checks if this heap is a valid min heap 
+    //by checking the children nodes are greater than parent nodes
 
+    public boolean isMinHeap(int k){
+        int heapSize=size();
+        if(k>=heapSize){
+            return true;
+        }
+        int left=2*k+1;
+        int right=2*k+2;
+        if(left < heapSize && isLess(left,k)){
+            return false;
+        }
+        if(right < heapSize && isLess(right,k)){
+            return false;
+        }
+        return isMinHeap(left) && isMinHeap(right);
+    }
+    @Override
+    public String toString(){
+       return heap.toString();
+    }
+    public ArrayList<E> toArr(){
+        return heap;
+    }
 }
