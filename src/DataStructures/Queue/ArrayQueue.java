@@ -67,25 +67,25 @@ public class ArrayQueue<E> implements Queue<E>{
         E data=array[front];
         return data;
     }
-    public boolean isPresent(E data){
+    public int isPresent(E data){
         if(isEmpty()){
             throw new RuntimeException("Queue is empty");
         }
         if(rear>front){
             for(int i=front;i<rear;i++){
                 if(array[i].equals(data))
-                return true;
+                return i;
             }
             }else{
                 for(int i=front;i<array.length;i++){
                     if(array[i].equals(data))
-                    return true;
+                    return i;
                 }
                 for(int i=0;i<=rear;i++)
                 if(array[i].equals(data))
-                    return true;
+                    return i;
             }
-        return false;
+        return -1;
     }
     @Override
     public String toString(){

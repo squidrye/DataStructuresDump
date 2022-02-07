@@ -3,9 +3,10 @@ package DataStructures.MinPriorityQueue;
 */ 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 
-public class BinaryHeapPQ<E extends Comparable<E>>{
+import DataStructures.Queue.Queue;
+
+public class BinaryHeapPQ<E extends Comparable<E>> implements Queue<E>{
 //heap will be implemented with a normal list.So,
 //A dynamic list to track the elements inside the heap
     private ArrayList<E> heap=null;
@@ -66,7 +67,7 @@ public class BinaryHeapPQ<E extends Comparable<E>>{
         return removeAt(0);
     }
     // returns index if heap contains elem else returns -1
-    public int contains(E elem){
+    public int isPresent(E elem){
         for(int i=0;i<heap.size();i++){
             if(heap.get(i).equals(elem))
             return i;
@@ -74,6 +75,7 @@ public class BinaryHeapPQ<E extends Comparable<E>>{
         return -1;
     }
     //pushing element, element must not be null
+    @Override
     public void offer(E elem){
         if(elem==null){
             throw new IllegalArgumentException("Non null value expected");
@@ -146,7 +148,7 @@ public class BinaryHeapPQ<E extends Comparable<E>>{
         if(elem==null){
             return false;
         }
-        int x=contains(elem);
+        int x=isPresent(elem);
         if(x!=-1){
             removeAt(x);
             return true;

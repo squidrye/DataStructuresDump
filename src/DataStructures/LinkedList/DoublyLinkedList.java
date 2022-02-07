@@ -197,8 +197,8 @@ public class DoublyLinkedList<T> implements Iterable<T>{
        }
        return false;
     }
-    public boolean contains(Object obj){
-        return indexOf(obj)!=-1;
+    public int contains(Object obj){
+        return indexOf(obj);
     }
     @Override
     public Iterator<T> iterator(){

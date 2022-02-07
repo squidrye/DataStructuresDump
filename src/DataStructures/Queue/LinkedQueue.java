@@ -34,7 +34,7 @@ public class LinkedQueue<E> implements Queue<E>, Iterable<E>{
     public Iterator<E> iterator(){
         return list.iterator();
     }
-    public boolean isPresent(E elem){
+    public int isPresent(E elem){
         return list.contains(elem);
     }
 }
