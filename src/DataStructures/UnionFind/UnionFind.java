@@ -10,7 +10,7 @@ public class UnionFind {
     //number of components or disjoint groups in union find
     private int numComponent;
 
-    public UnionFind(int Size){
+    public UnionFind(int size){
         if(size<=0){
             throw new IllegalArgumentException("Non-negative size expected");
         }
