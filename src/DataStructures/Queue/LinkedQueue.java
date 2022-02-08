@@ -4,8 +4,8 @@ import DataStructures.LinkedList.DoublyLinkedList;
 import java.util.Iterator;
 public class LinkedQueue<E> implements Queue<E>, Iterable<E>{
     DoublyLinkedList<E> list=new DoublyLinkedList<>();
-    LinkedQueue(){};
-    LinkedQueue(E elem){
+    public LinkedQueue(){};
+    public LinkedQueue(E elem){
         offer(elem);
     }
     public int size(){
@@ -36,5 +36,9 @@ public class LinkedQueue<E> implements Queue<E>, Iterable<E>{
     }
     public int isPresent(E elem){
         return list.contains(elem);
+    }
+    @Override
+    public String toString(){
+        return list.toString();
     }
 }

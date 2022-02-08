@@ -99,13 +99,14 @@ public class DoublyLinkedList<T> implements Iterable<T>{
         }
         T data=head.data;
         head=head.next;
-        head.previous.next=null;
-        head.previous.data=null;
-        head.previous=null;
         size--;
         if(isEmpty()){
             tail=null;
+            return data;
         }
+        head.previous.next=null;
+        head.previous.data=null;
+        head.previous=null;
         return data;
     }
     public T removeLast(){
@@ -114,13 +115,14 @@ public class DoublyLinkedList<T> implements Iterable<T>{
         }
         T data=tail.data;
         tail=tail.previous;
-        tail.next.previous=null;
-        tail.next.data=null;
-        tail.next=null;
         size--;
         if(isEmpty()){
             head=null;
+            return data;
         }
+        tail.next.previous=null;
+        tail.next.data=null;
+        tail.next=null;
         return data;
     }
     private T removeNode(Node<T> node){
