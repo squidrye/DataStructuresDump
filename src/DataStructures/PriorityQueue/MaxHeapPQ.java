@@ -2,9 +2,6 @@ package DataStructures.PriorityQueue;
 
 import java.util.ArrayList;
 
-import javax.management.InvalidAttributeValueException;
-import javax.management.RuntimeErrorException;
-
 import DataStructures.Queue.Queue;
 public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
     private ArrayList<E> heap=null;
