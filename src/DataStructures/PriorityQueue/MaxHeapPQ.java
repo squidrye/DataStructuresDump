@@ -1,6 +1,7 @@
 package DataStructures.PriorityQueue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import DataStructures.Queue.Queue;
 public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
@@ -23,6 +24,16 @@ public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
             sink(i);
         }
     }
+    public MaxHeapPQ(Collection<E> elems){
+        int heapSize=elems.size();
+        heap = new ArrayList<>(heapSize);
+        for(E x: elems){
+            heap.add(x);
+        }
+        for(int i=Math.max((heapSize/2)-1,0);i>=0;i--){
+            sink(i);
+        }
+    }
     public boolean isEmpty(){
         return size()==0;
     }
@@ -32,7 +43,7 @@ public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
     public boolean larger(int x, int y){
         E node1 = heap.get(x);
         E node2 = heap.get(y);
-        if(node1.compareTo(node2)>1){
+        if(node1.compareTo(node2)>0){
             return true;
         }else return false;
     }
@@ -48,6 +59,8 @@ public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
         int left = 2 * curr + 1;
         int right = 2 * curr + 2;
         int larger = left;
+        System.out.println("DEBUGGING SINK CALLS");
+        System.out.println(heap.toString());
         if(right<heapSize && larger(right, left)){
             larger = right;
         }
@@ -100,5 +113,8 @@ public class MaxHeapPQ<E extends Comparable<E>> implements Queue<E> {
             return i;
         }
         return -1;
+    }
+    public String toString(){
+        return heap.toString();
     }
 }
