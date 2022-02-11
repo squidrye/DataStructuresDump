@@ -52,4 +52,12 @@ public class Graph<E extends Comparable<E>> {
             return true;
         }else return false;
     }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<nodeList.size();i++){
+            sb.append(nodeList.get(i) + "->" + adjList.get(i));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
