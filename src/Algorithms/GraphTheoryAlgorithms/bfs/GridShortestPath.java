@@ -113,6 +113,7 @@ public class GridShortestPath {
             // System.out.println(rowTrack+"=="+sr + " "+colTrack+"=="+sc);
         }
         Collections.reverse(dir);
+        Collections.reverse(al);
         System.out.println(dir.toString());
         return al.toString();
     }
