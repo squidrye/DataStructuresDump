@@ -124,7 +124,8 @@ public class GridShortestPath {
                                 {'.','.','#','#','.','.','.',},
                                 {'#','.','#','#','.','#','.',},
                                 };
-        GridShortestPath path =new GridShortestPath(dungeonTest, 0, 0);
+                                //edit here 
+        GridShortestPath path =new GridShortestPath(dungeonTest, 4, 6);//graph(2D matrix), starting row and col
         path.solve();
         
     }
