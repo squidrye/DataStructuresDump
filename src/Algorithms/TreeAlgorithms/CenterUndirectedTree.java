@@ -14,7 +14,6 @@ public class CenterUndirectedTree {
             degree[i]=graph.get(i).size();  //count number of edges of ith node to find degree of ith node
             if(degree[i]<=1){
                 leafList.add(i);
-                degree[i]=0;
             }
         }
         int processedLeafCount = leafList.size();
