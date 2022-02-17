@@ -159,4 +159,20 @@ class HashTableSeparateChaining<K,V>{
         }
         return values;
     }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        for (int i = 0; i < capacity; i++) {
+          if (table[i] == null) continue;
+          for (Entry<K, V> entry : table[i]) sb.append(entry + ", ");
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+    public static void main(String[] args) {
+        HashTableSeparateChaining<String, Integer> table = new HashTableSeparateChaining<>(5);
+        table.add("M", 19);
+        table.add("A",12);
+        System.out.println(table);
+    }
 }
