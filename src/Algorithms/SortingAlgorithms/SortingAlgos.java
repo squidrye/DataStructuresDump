@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class SortingAlgos {
     public static void main(String[] args) {
-        int [] arr = {4,3,2,5,1};
-        quick(arr,0, arr.length - 1 );
+        int [] arr = {4,3,2,5,1,64,54,32,12,11};
+        heapSort(arr);
         System.out.println(Arrays.toString(arr));
     }
     static void bubble(int [] arr){
@@ -160,4 +160,39 @@ public class SortingAlgos {
         quick(arr, low, end);
         quick(arr, start, high);
     }
- }
+    // heap sort
+    static void heapSort(int [] arr){
+        int heapSize = arr.length;
+        for (int i = heapSize/2 -1;i>=0;i--){
+            sink(arr, i, heapSize);
+        }
+        for (int i = heapSize - 1;i >= 0;i--){
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            sink(arr, 0, i);
+        }
+    }
+
+    private static void sink(int[] arr, int nodeIndex, int heapSize) {
+        int largest = nodeIndex;
+        int left = 2 * nodeIndex + 1;
+        int right = 2 * nodeIndex + 2;
+
+        if(left < heapSize && arr[left] > arr[largest]){
+            largest = left;
+        }
+
+        if(right < heapSize && arr[right] > arr[largest]){
+            largest = right;
+        }
+        if(largest != nodeIndex){
+            int temp = arr[largest];
+            arr[largest] = arr[nodeIndex];
+            arr[nodeIndex] = temp;
+
+            sink(arr, largest, heapSize);
+        }
+    }
+}
