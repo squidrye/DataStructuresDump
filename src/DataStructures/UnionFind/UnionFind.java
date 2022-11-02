@@ -31,6 +31,7 @@ public class UnionFind {
         }
 
         //path compression
+        //float the nodes to decrease height of tree.
         while(parent[p]!=root){
             int toBeCheckedNext = parent[p];
             parent[p]=root;

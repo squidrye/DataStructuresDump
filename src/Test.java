@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import DataStructures.DynamicArray.DynamicArray;
 import DataStructures.LinkedList.DoublyLinkedList;
-import DataStructures.MinPriorityQueue.BinaryHeapPQ;
 import DataStructures.Stack.LinkedStack;
 import DataStructures.Queue.ArrayQueue;
 import DataStructures.Queue.LinkedQueue;
